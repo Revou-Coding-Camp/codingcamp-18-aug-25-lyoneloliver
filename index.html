@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Todo List</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+	<div class="container">
+		<h1>Todo List</h1>
+
+		<div class="task-input">
+			<input type="text" id="input" class="task" placeholder="Tulis task...">
+			<input type="date" id="date" class="date">
+			<button id="addTask" onclick="add()">Tambah</button>
+		</div>
+
+		<div class="task-filter">
+			<div class="filter">
+				<div class="dropdown" id="dropdown">
+					<div class="dropdown-btn" onclick="toggleDropdown()">Filter</div>
+					<div class="dropdown-content">
+
+						<fieldset>
+							<legend>Sort By</legend>
+							<label><input type="radio" name="first" value="Time Added" checked>Time Added</label><br>
+							<label><input type="radio" name="first" value="Due Date">Due Date</label><br>
+							<label><input type="radio" name="first" value="Alphabetical">Alphabetical</label>
+						</fieldset>
+
+
+						<fieldset>
+							<legend>Status</legend>
+							<label><input type="radio" name="second" value="All" checked>All</label><br>
+							<label><input type="radio" name="second" value="To Do">To Do</label><br>
+							<label><input type="radio" name="second" value="Done">Done</label>
+						</fieldset>
+
+
+						<fieldset>
+							<legend>Order</legend>
+							<label><input type="radio" name="third" value="Descending" checked>Descending</label><br>
+							<label><input type="radio" name="third" value="Ascending">Ascending</label>
+						</fieldset>
+						<button onclick="submitPilihan()">OK</button>
+					</div>
+				</div>
+			</div>
+
+			<button id="delete-all" class="delete-all" onclick="deleteAll()">Delete All</button>
+
+		</div>
+
+		<div class="task-list">
+			<div class="task-list-header">
+				<div class="header">No</div>
+				<div class="header">Task</div>
+				<div class="header">Due Date</div>
+				<div class="header">Status</div>
+				<div class="header">Actions</div>
+			</div>
+			<div id="task-list-body" class="task-list-body">
+			</div>
+		</div>
+	</div>
+
+	<script src="script.js"></script>>
+
+
+</body>
+
+</html>
