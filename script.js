@@ -76,35 +76,35 @@ function toggleDropdown() {
 }
 
 function submitPilihan() {
-    let bagian1 = document.querySelector('input[name="first"]:checked')?.value || "";
-    let bagian2 = document.querySelector('input[name="second"]:checked')?.value || "";
-    let bagian3 = document.querySelector('input[name="third"]:checked')?.value || "";
+    let choice1 = document.querySelector('input[name="first"]:checked')?.value || "";
+    let choice2 = document.querySelector('input[name="second"]:checked')?.value || "";
+    let choice3 = document.querySelector('input[name="third"]:checked')?.value || "";
 
-    if (bagian1 !== sortByNow || bagian3 !== orderNow) {
-        sortBy(bagian1, bagian3);
-        orderNow = bagian3;
-        sortByNow = bagian1;
+    if (choice1 !== sortByNow || choice3 !== orderNow) {
+        sortBy(choice1, choice3);
+        orderNow = choice3;
+        sortByNow = choice1;
     }
 
-    if (bagian2 !== statusNow) {
-        statusNow = bagian2;
-        filterStatus(bagian2)
+    if (choice2 !== statusNow) {
+        statusNow = choice2;
+        filterStatus(choice2)
     }
 
 
 
-    let hasil = `Filter`;
-    document.querySelector(".dropdown-btn").textContent = hasil;
+    let product = `Filter`;
+    document.querySelector(".dropdown-btn").textContent = product;
     toggleDropdown();
 }
 
-function sortBy(bagian1, bagian3) {
+function sortBy(choice1, choice3) {
 
-    if (bagian1 !== sortByNow) {
+    if (choice1 !== sortByNow) {
         const container = document.getElementById('task-list-body');
         const tasks = Array.from(container.querySelectorAll('.tasks'));
 
-        if (bagian1 === "Due Date") {
+        if (choice1 === "Due Date") {
             tasks.sort((a, b) => {
 
                 let dateAraw = a.querySelector('.date')?.textContent?.trim();
@@ -120,7 +120,7 @@ function sortBy(bagian1, bagian3) {
                 return timeA - timeB;
             });
         }
-        else if (bagian1 === "Time Added") {
+        else if (choice1 === "Time Added") {
             tasks.sort((a, b) => {
 
                 const idxA = parseInt(a.dataset.index || a.getAttribute('data-index') || a.id.replace(/\D/g, ''), 10) || 0;
@@ -128,7 +128,7 @@ function sortBy(bagian1, bagian3) {
                 return idxA - idxB;
             });
         }
-        else if (bagian1 === "Alphabetical") {
+        else if (choice1 === "Alphabetical") {
             tasks.sort((a, b) => {
 
                 const titleA = (a.querySelector('.title')?.textContent || a.querySelector('input[type="text"]')?.value || "").trim().toLowerCase();
@@ -138,8 +138,8 @@ function sortBy(bagian1, bagian3) {
         }
     }
 
-    if (bagian3 != orderNow) {
-        orderNow = bagian3;
+    if (choice3 != orderNow) {
+        orderNow = choice3;
         tasks.reverse();
     }
 
@@ -148,19 +148,19 @@ function sortBy(bagian1, bagian3) {
         t.querySelector(".no").textContent = i + 1;
     });
 }
-function filterStatus(bagian2) {
+function filterStatus(choice2) {
     const tasks = Array.from(document.querySelectorAll('.tasks'));
 
     tasks.forEach(task => {
         const status = task.querySelector('button').textContent.trim();
 
-        if (bagian2 === "All") {
+        if (choice2 === "All") {
             task.style.display = "";
         }
-        else if (bagian2 === "Done") {
+        else if (choice2 === "Done") {
             task.style.display = status === "✅" ? "" : "none";
         }
-        else if (bagian2 === "To Do") {
+        else if (choice2 === "To Do") {
             task.style.display = status === "❌" ? "" : "none";
         }
     });
